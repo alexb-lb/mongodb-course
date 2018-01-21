@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Alexandr Bobrenko",
   "license": "MIT",
+  "scripts": {
+    "test": "nodemon --exec \"mocha -R min\""
+  },
   "dependencies": {
     "mocha": "^4.0.1",
     "mongoose": "^4.13.5",
