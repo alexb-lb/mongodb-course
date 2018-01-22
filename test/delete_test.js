@@ -16,7 +16,7 @@ describe('Deleting a user', () => {
         assert(user === null);
         done();
       })
-  }).timeout('10s');
+  });
 
   it('Class method remove', (done) => {
     User.remove({name: joe.name})
@@ -25,7 +25,7 @@ describe('Deleting a user', () => {
         assert(user === null);
         done();
       })
-  }).timeout('10s');
+  });
 
   it('Class method findAndRemove', (done) => {
     User.findOneAndRemove({name: joe.name})
@@ -34,7 +34,7 @@ describe('Deleting a user', () => {
         assert(user === null);
         done();
       })
-  }).timeout('10s');
+  });
 
   it('Class method findByIdAndRemove', (done) => {
     User.findByIdAndRemove(joe._id)
@@ -43,5 +43,5 @@ describe('Deleting a user', () => {
         assert(user === null);
         done();
       })
-  }).timeout('10s');
+  });
 });

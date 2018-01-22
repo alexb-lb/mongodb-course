@@ -16,7 +16,7 @@ describe('Reading users out of the database', () => {
         assert(users[0]._id.toString() === joe._id.toString());
         done();
       })
-  }).timeout('10s');
+  })
 
   it('Find a user with a particular id', (done) => {
     User.findOne({_id: joe._id})
@@ -25,5 +25,5 @@ describe('Reading users out of the database', () => {
         assert(user.name === joe.name);
         done();
       })
-  }).timeout('10s');
+  })
 });

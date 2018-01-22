@@ -5,7 +5,7 @@ describe('Updating a user', () => {
   let joe;
 
   beforeEach((done) => {
-    joe = new User({name: 'Joe', postCount: 20});
+    joe = new User({name: 'Joe', likes: 20});
     joe.save().then(() => done());
   });
 
@@ -28,11 +28,11 @@ describe('Updating a user', () => {
 
     // .set() saves in memory, so we need to save into DB after .set called
     assertName(joe.save(), 'Alex', done);
-  }).timeout('10s');
+  });
 
   it('A model instance can update', (done) => {
     assertName(joe.update({name: 'Alex'}), 'Alex', done);
-  }).timeout('10s');
+  });
 
   it('A model class can update', (done) => {
     // for every elem in collection with name Joe replace with Alex
@@ -41,7 +41,7 @@ describe('Updating a user', () => {
       'Alex',
       done
     );
-  }).timeout('10s');
+  });
 
   it('A model class can update one record', (done) => {
     assertName(
@@ -49,7 +49,7 @@ describe('Updating a user', () => {
       'Alex',
       done
     );
-  }).timeout('10s');
+  });
 
   it('A model class can find a record with id and update', (done) => {
     assertName(
@@ -57,15 +57,16 @@ describe('Updating a user', () => {
       'Alex',
       done
     );
-  }).timeout('10s');
+  });
 
+  // xit - mocha will not execute this test
   it('A user can have their postCount incremented by 1', (done) => {
     // increment for every user with name Joe
-    User.update({name: joe.name}, {$inc: {postCount: 1}})
+    User.update({name: joe.name}, {$inc: {likes: 1}})
       .then(() => User.findOne({name: joe.name}))
       .then((user) => {
-        assert(user.postCount === joe.postCount + 1);
+        assert(user.likes === joe.likes + 1);
         done();
       })
-  }).timeout('10s');
+  });
 });

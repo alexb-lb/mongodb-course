@@ -10,5 +10,5 @@ describe('creating records', () => {
         assert(!joe.isNew);
         done();
       })
-  }).timeout('10s');
+  })
 });
