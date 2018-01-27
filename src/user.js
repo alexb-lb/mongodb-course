@@ -27,6 +27,16 @@ UserSchema.virtual('postCount').get(function (){
   return this.posts.length;
 });
 
+UserSchema.pre('remove', function (next){
+  const BlogPost = mongoose.model('blogPost');
+
+  // $in: iterate over all blogpost collection
+  // if blogpost._id IN user.blogPosts of removed user,
+  // remove it from blogpost
+  BlogPost.remove({_id: {$in: this.blogPosts}})
+    .then(() => next());
+});
+
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
